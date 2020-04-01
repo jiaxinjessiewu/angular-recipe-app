@@ -36,5 +36,8 @@ export class RecipeService {
         this.slService.addIngredients(ingredients)
     }
 
-
+    getRecipe(id:number) {
+        console.log("Serve: ",id)
+        return this.recipes.slice()[id];
+    }
 }

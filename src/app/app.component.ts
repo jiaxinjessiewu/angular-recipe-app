@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   loadedPage = 'recipes';
-  onNavigation(page: string) {
-    console.log("app on navi: ",page)
-    this.loadedPage = page;
-  }
 }
