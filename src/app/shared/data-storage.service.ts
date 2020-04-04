@@ -11,26 +11,25 @@ export class  DataStorageService{
         const recipes = this.recipeService.getRecipes();
         this.http.put('https://angular-recipe-app-d5a4b.firebaseio.com/recipes.json',recipes)
         .subscribe(response => {
-            console.log("put: ",response)
         })
     }
     fetchRecipes(){
-        console.log("fetch")
         return this.http
         .get<Recipe[]>(
             'https://angular-recipe-app-d5a4b.firebaseio.com/recipes.json'
         )
         .pipe(
             map(recipes => {
-            return recipes.map(recipe => {
-                return {
-                ...recipe,
-                ingredients: recipe.ingredients ? recipe.ingredients : []
-                };
-            });
+
+                return recipes.map(recipe => {
+                    return {
+                    ...recipe,
+                    ingredients: recipe.ingredients ? recipe.ingredients : []
+                    };
+                });
             }),
             tap(recipes => {
-            this.recipeService.setRecipes(recipes);
+                this.recipeService.setRecipes(recipes);
             })
         )
     }
